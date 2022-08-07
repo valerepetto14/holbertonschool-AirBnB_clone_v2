@@ -30,7 +30,6 @@ class HBNBCommand(cmd.Cmd):
              'latitude': float, 'longitude': float
             }
 
-
     def do_quit(self, command):
         """ Method to exit the HBNB console"""
         return True
@@ -58,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         if not args:
             print("** class name missing **")
-        
+
         # Separamos los parametros pasados por un espacio
         params = args.split(" ")
 
@@ -86,8 +85,8 @@ class HBNBCommand(cmd.Cmd):
             # Se cambia los guiones bajos por espacios
             if "_" in value:
                 value = value.replace("_", " ")
-            
-            # Seteamos los atributos (las keys y values) en el 
+
+            # Seteamos los atributos (las keys y values) en el
             # objeto(new_instance)
             setattr(new_instance, key, value)
 
