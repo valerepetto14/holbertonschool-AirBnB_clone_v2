@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
     # determines prompt for interactive/non-interactive modes
-    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+    prompt = '(hbnb) '
 
     classes = {
                'BaseModel': BaseModel, 'User': User, 'Place': Place,
@@ -30,80 +30,21 @@ class HBNBCommand(cmd.Cmd):
              'latitude': float, 'longitude': float
             }
 
-    def preloop(self):
-        """Prints if isatty is false"""
-        if not sys.__stdin__.isatty():
-            print('(hbnb)')
-
-    def precmd(self, line):
-        """Reformat command line for advanced command syntax.
-
-        Usage: <class name>.<command>([<id> [<*args> or <**kwargs>]])
-        (Brackets denote optional fields in usage example.)
-        """
-        _cmd = _cls = _id = _args = ''  # initialize line elements
-
-        # scan for general formating - i.e '.', '(', ')'
-        if not ('.' in line and '(' in line and ')' in line):
-            return line
-
-        try:  # parse line left to right
-            pline = line[:]  # parsed line
-
-            # isolate <class name>
-            _cls = pline[:pline.find('.')]
-
-            # isolate and validate <command>
-            _cmd = pline[pline.find('.') + 1:pline.find('(')]
-            if _cmd not in HBNBCommand.dot_cmds:
-                raise Exception
-
-            # if parantheses contain arguments, parse them
-            pline = pline[pline.find('(') + 1:pline.find(')')]
-            if pline:
-                # partition args: (<id>, [<delim>], [<*args>])
-                pline = pline.partition(', ')  # pline convert to tuple
-
-                # isolate _id, stripping quotes
-                _id = pline[0].replace('\"', '')
-                # possible bug here:
-                # empty quotes register as empty _id when replaced
-
-                # if arguments exist beyond _id
-                pline = pline[2].strip()  # pline is now str
-                if pline:
-                    # check for *args or **kwargs
-                    if pline[0] == '{' and pline[-1] == '}'\
-                            and type(eval(pline)) is dict:
-                        _args = pline
-                    else:
-                        _args = pline.replace(',', '')
-                        # _args = _args.replace('\"', '')
-            line = ' '.join([_cmd, _cls, _id, _args])
-
-        except Exception as mess:
-            pass
-        finally:
-            return line
-
-    def postcmd(self, stop, line):
-        """Prints if isatty is false"""
-        if not sys.__stdin__.isatty():
-            print('(hbnb) ', end='')
-        return stop
 
     def do_quit(self, command):
         """ Method to exit the HBNB console"""
-        exit()
+        return True
 
     def help_quit(self):
         """ Prints the help documentation for quit  """
         print("Exits the program with formatting\n")
 
     def do_EOF(self, arg):
-        """ Handles EOF to exit program """
+        """
+        Exit if EOF happens
+        """
         print()
-        exit()
+        return True
 
     def help_EOF(self):
         """ Prints the help documentation for EOF """
@@ -117,12 +58,41 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         if not args:
             print("** class name missing **")
-            return
-        elif args not in HBNBCommand.classes:
+        
+        # Separamos los parametros pasados por un espacio
+        params = args.split(" ")
+
+        if params[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-            return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
+
+        # Se crea una instancia de la clase que se pase como primer parametro
+        new_instance = HBNBCommand.classes[params[0]]()
+
+        # Separo los parametros sin la clase (la clase estaba en params[0])
+        params = params[1:]
+
+        # Se hace un for para setear los parametros pasados con una previa
+        # limpieza de los datos
+        for param in params:
+            key_value = param.split("=")  # separacion por signo de igual
+            key = key_value[0]  # La key es lo primero que se pasa
+            value = key_value[1]  # El value es lo pasado despues del =
+
+            # Uso del metodo strip para sacar las comillas para que no
+            # aparezcan \ queriendo escapar el texto
+            if value[0] == '"':
+                value = value.strip('"')
+
+            # Se cambia los guiones bajos por espacios
+            if "_" in value:
+                value = value.replace("_", " ")
+            
+            # Seteamos los atributos (las keys y values) en el 
+            # objeto(new_instance)
+            setattr(new_instance, key, value)
+
+        # Guardamos la instancia en la base de datos
+        new_instance.save()
         print(new_instance.id)
 
     def help_create(self):
