@@ -63,16 +63,26 @@ class FileStorage:
         Delete obj from __objects if it’s inside - if obj is equal to None,
         the method should not do anything.
         """
-
         if obj == None:
             print("HOLAAAAAAAAAAAAAA")
             pass
-        elif obj in self.__objects:
+        else:
             # Creamos la key - es el: nombre de la clase + punto + id
             key = f"{obj.__class__.__name__}.{obj.id}"
-            del self.__objects[key]
-            self.save()
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        print(f"KEY -> {key}")
-        print("__objects:")
-        print(self.__objects)
+            if self.__objects[key] is not None:
+                del self.__objects[key] 
+                self.save()
+            else:
+                pass
+        # elif obj in self.__objects:
+        #     # Creamos la key - es el: nombre de la clase + punto + id
+        #     key = f"{obj.__class__.__name__}.{obj.id}"
+        #     print("hola")
+        #     # print(self.object[key])
+        #     # del self.__objects[key]
+        #     # self.save()
+        # key = f"{obj.__class__.__name__}.{obj.id}"
+        # print(f"KEY -> {key}")
+        # print("__objects:")
+        # print(self.__objects)
+       
