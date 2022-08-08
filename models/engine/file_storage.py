@@ -22,11 +22,13 @@ class FileStorage:
         if cls is None:
             return FileStorage.__objects
         else:
-            list_of_classes = {}
+            dict_of_classes = {}
             for key, value in self.__objects.items():
+                # Si el nombre de la clase del objeto es igual a la clase
+                # lo agregamos en el dic a retornar
                 if value.__class__ == cls:
-                    list_of_classes[key] = self.__objects[key]
-            return list_of_classes
+                    dict_of_classes[key] = self.__objects[key]
+            return dict_of_classes
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -43,13 +45,6 @@ class FileStorage:
 
     def reload(self):
         """Loads storage dictionary from file"""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
 
         classes = {
                     'BaseModel': BaseModel, 'User': User, 'Place': Place,
