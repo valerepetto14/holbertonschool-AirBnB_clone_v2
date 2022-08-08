@@ -10,3 +10,6 @@ class State(BaseModel, Base):
     # creamos la tabla "states" la clase City va a estar asociada a esta tabla
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
+    # Relacionamos State con City - si se elimina un Estado, se tendrian que
+    # eliminar todas las ciudades dentro de ese Estado.
+    cities = relationship('City', backref="state")
