@@ -19,7 +19,14 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        return FileStorage.__objects
+        if cls is None:
+            return FileStorage.__objects
+        else:
+            list_of_classes = {}
+            for key, value in self.__objects.items():
+                if value.__class__ == cls:
+                    list_of_classes[key] = self.__objects[key]
+            return list_of_classes
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
