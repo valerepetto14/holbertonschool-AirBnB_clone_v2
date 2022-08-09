@@ -18,3 +18,5 @@ class User(BaseModel, Base):
     # Establish relationship between User and Places
     places = relationship('Place', backref="user", cascade="all ,\
                                 delete-orphan")
+    reviews = relationship('Review', backref="user", cascade="all ,\
+                                delete-orphan")
