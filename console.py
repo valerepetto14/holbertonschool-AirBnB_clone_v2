@@ -174,8 +174,6 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            storage_print = storage.all()
-            print(storage_print)
             # Devolver una clase particular
             for k, v in storage.all(self.classes[args]).items():
                 if k.split('.')[0] == args:
@@ -184,7 +182,6 @@ class HBNBCommand(cmd.Cmd):
             # Devolver todas las clases
             for k, v in storage.all().items():
                 print_list.append(str(v))
-
         print(print_list)
 
     def help_all(self):

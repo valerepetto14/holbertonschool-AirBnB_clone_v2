@@ -38,7 +38,7 @@ class DBStorage:
         """
         dic_return = {}
         classes = {
-                'State': State, 'City': City
+                'State': State, 'City': City, 'User': User
                   }
         if cls is None:
             for clase in classes:
