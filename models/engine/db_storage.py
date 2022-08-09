@@ -57,7 +57,6 @@ class DBStorage:
             if classes[cls.__name__]:
                 # Se obtiene la data en la query por todas las clases
                 objects = self.__session.query(classes[cls.__name__]).all()
-                print(object)
                 for obj in objects:
                     key = type(obj).__name__ + '.' + obj.id
                     dic_return[key] = obj
