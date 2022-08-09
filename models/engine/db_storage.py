@@ -47,21 +47,18 @@ class DBStorage:
                 for obj in data:
                     # Se obtiene la key para setear el obj en el dic a retornar
                     key = f"{obj.__class__.__name__}.{obj.id}"
-                    value = obj
                     # Se agregan los objetos en el diccionario a retornar
-                    dic_return[key] = value
+                    dic_return[key] = obj
+            print("hola")
             return dic_return
         else:
             # Esto es para cuando se pasa un clase especifica:
-            if cls in classes:
-                # Se obtiene la data en la query por todas las clases
-                data = self.__session.query(classes[cls]).all()
-                for obj in data:
-                    # Se obtiene la key para setear el obj en el dic a retornar
-                    key = f"{obj.__class__}.{obj.id}"
-                    value = obj
-                    # Se agregan los objetos en el diccionario a retornar
-                    dic_return[key] = value
+            for clss in classes:
+                if cls is classes[clss]:
+                    objects = self.__session.query(classes[clss]).all()
+                    for obj in objects:
+                        key = type(obj).__name__ + '.' + obj.id
+                        dic_return[key] = obj
             return dic_return
 
     def new(self, obj):
