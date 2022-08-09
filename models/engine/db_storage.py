@@ -10,6 +10,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 from models.user import User
+from sqlalchemy.orm import scoped_session
 
 
 class DBStorage:
@@ -24,10 +25,10 @@ class DBStorage:
         passwordDB = getenv("HBNB_MYSQL_PWD")
         hostDB = getenv("HBNB_MYSQL_HOST")
         database = getenv("HBNB_MYSQL_DB")
-        self.__engine = engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
-                                               .format(userDB, passwordDB,
-                                                       hostDB, database),
-                                               pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
+                                      .format(userDB, passwordDB,
+                                              hostDB, database),
+                                      pool_pre_ping=True)
         if env == "test":
             Base.metadata.drop_all(self.__engine)
 
@@ -37,17 +38,15 @@ class DBStorage:
         """
         dic_return = {}
         classes = {
-                'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                'State': State, 'City': City, 'Amenity': Amenity,
-                'Review': Review
+                'State': State, 'City': City
                   }
         if cls is None:
-            for class in classes:
+            for clase in classes:
                 # Se obtiene la data en la query por todas las clases
-                data = self.__session.query(classes[class]).all()
+                data = self.__session.query(classes[clase]).all()
                 for obj in data:
                     # Se obtiene la key para setear el obj en el dic a retornar
-                    key = f"{obj.__class__}.{obj.id}"
+                    key = f"{obj.__class__.__name__}.{obj.id}"
                     value = obj
                     # Se agregan los objetos en el diccionario a retornar
                     dic_return[key] = value
@@ -56,7 +55,7 @@ class DBStorage:
             # Esto es para cuando se pasa un clase especifica:
             if cls in classes:
                 # Se obtiene la data en la query por todas las clases
-                data = self.__session.query(classes[class]).all()
+                data = self.__session.query(classes[cls]).all()
                 for obj in data:
                     # Se obtiene la key para setear el obj en el dic a retornar
                     key = f"{obj.__class__}.{obj.id}"
