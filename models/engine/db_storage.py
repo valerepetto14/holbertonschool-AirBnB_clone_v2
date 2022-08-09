@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""define DBStorage"""
+"""Define methods and attributes for DBStorage class"""
 from os import getenv
 from models.base_model import Base
 from sqlalchemy.orm import sessionmaker
@@ -14,7 +14,7 @@ from sqlalchemy.orm import scoped_session
 
 
 class DBStorage:
-    """def class DBStorage engine for database like mysql"""
+    """Def class DBStorage engine for database like mysql"""
     __engine = None
     __session = None
 
@@ -35,6 +35,7 @@ class DBStorage:
     def all(self, cls=None):
         """
         def method all that return all objects depending of the class name
+        or return all if no class name is passed.
         """
         dic_return = {}
         classes = {
@@ -42,6 +43,7 @@ class DBStorage:
                'State': State, 'City': City, 'Amenity': Amenity,
                'Review': Review
               }
+        # Si no se pasa una clase, es porque se quiere todos los datos
         if cls is None:
             for clase in classes:
                 # Se obtiene la data en la query por todas las clases
