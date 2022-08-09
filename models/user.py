@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ this model define class user """
-from models.base_model import BaseModel
-from models.base_model import Base
+from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from models.city import City
 from sqlalchemy.orm import relationship
