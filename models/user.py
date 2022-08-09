@@ -6,7 +6,10 @@ from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
-    """This class defines a user by various attributes"""
+    """
+    Class that defines a user with different attributes and the table from
+    the database to connect
+    """
     __tablename__ = "users"
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
