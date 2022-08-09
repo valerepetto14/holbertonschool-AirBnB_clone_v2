@@ -38,8 +38,10 @@ class DBStorage:
         """
         dic_return = {}
         classes = {
-                'State': State, 'City': City
-                  }
+                'User': User, 'Place': Place,
+                'State': State, 'City': City, 'Amenity': Amenity,
+                'Review': Review
+            }
         if cls is None:
             for clase in classes:
                 # Se obtiene la data en la query por todas las clases
@@ -49,13 +51,13 @@ class DBStorage:
                     key = f"{obj.__class__.__name__}.{obj.id}"
                     # Se agregan los objetos en el diccionario a retornar
                     dic_return[key] = obj
-            print("hola")
             return dic_return
         else:
             # Esto es para cuando se pasa un clase especifica:
             if classes[cls.__name__]:
                 # Se obtiene la data en la query por todas las clases
                 objects = self.__session.query(classes[cls.__name__]).all()
+                print(object)
                 for obj in objects:
                     key = type(obj).__name__ + '.' + obj.id
                     dic_return[key] = obj
