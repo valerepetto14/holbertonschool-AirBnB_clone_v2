@@ -38,8 +38,10 @@ class DBStorage:
         """
         dic_return = {}
         classes = {
-                'State': State, 'City': City, 'User': User
-                  }
+               'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review
+              }
         if cls is None:
             for clase in classes:
                 # Se obtiene la data en la query por todas las clases
