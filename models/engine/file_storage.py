@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""define FileStorage"""
 import json
 from models.base_model import BaseModel
 from os.path import exists
