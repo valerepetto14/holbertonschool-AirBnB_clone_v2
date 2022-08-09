@@ -53,12 +53,12 @@ class DBStorage:
             return dic_return
         else:
             # Esto es para cuando se pasa un clase especifica:
-            for clss in classes:
-                if cls is classes[clss]:
-                    objects = self.__session.query(classes[clss]).all()
-                    for obj in objects:
-                        key = type(obj).__name__ + '.' + obj.id
-                        dic_return[key] = obj
+            if classes[cls.__name__]:
+                # Se obtiene la data en la query por todas las clases
+                objects = self.__session.query(classes[cls.__name__]).all()
+                for obj in objects:
+                    key = type(obj).__name__ + '.' + obj.id
+                    dic_return[key] = obj
             return dic_return
 
     def new(self, obj):
