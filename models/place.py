@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 from models.review import Review
 from os import getenv
 
+
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
@@ -31,15 +32,15 @@ class Place(BaseModel, Base):
         @property
         def reviews(self):
             """
-            Getter attribute cities that returns the list of City instances
-            with state_id equals to the current State.id => It will be the
-            FileStorage relationship between State and City.
+            Getter attribute reviews that returns the list of Review instances
+            with place_id equals to the current Place.id => It will be the
+            FileStorage relationship between Place and Review
             """
             return_list = []
-            # Guardamos todas las ciudades que haya en la clase City
+            # Guardamos todas las ciudades que haya en la clase Review
             reviews = models.storage.all(Review).values()
             for review in reviews:
-                # Se compara id del objeto de tipo State con City
+                # Se compara id del objeto de tipo Place con reviews
                 if self.id == review.place_id:
                     # Se guarda el resultado en la lista a retornar
                     return_list.append(models.storage.all(Review)[review])
