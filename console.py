@@ -4,12 +4,12 @@ import cmd
 import sys
 from models.base_model import BaseModel
 from models.__init__ import storage
-from models.user import User
 from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -168,14 +168,14 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
         print_list = []
-
+        arg = args.split()
         if args:
             args = args.split(' ')[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
             # Devolver una clase particular
-            for k, v in storage.all(self.classes[args]).items():
+            for k, v in storage.all(self.classes[args[0]]).items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
