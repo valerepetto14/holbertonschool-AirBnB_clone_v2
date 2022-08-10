@@ -55,4 +55,4 @@ class Place(BaseModel, Base):
         @amenities.setter
         def amenities(self, amenity_object):
             if type(amenity_object).__name__ == "Amenity":
-                self.amenity_ids.append(amenity_object.id)d
+                self.amenity_ids.append(amenity_object.id)
