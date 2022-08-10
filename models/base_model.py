@@ -28,6 +28,13 @@ class BaseModel:
                     pass  # No le seteamos nada,solo usamos pass
                 else:
                     setattr(self, key, value)
+            # ID - TASK 10
+            if 'id' not in kwargs:
+                self.id = str(uuid.uuid4())
+            if 'created_at' not in kwargs:
+                self.created_at = datetime.now()
+            if 'updated_at' not in kwargs:
+                self.updated_at = datetime.now()
         else:
             self.id = str(uuid.uuid4())  # convert the id to string
             self.created_at = datetime.now()  # Use method now of datetime mod

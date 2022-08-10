@@ -175,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             # Devolver una clase particular
-            for k, v in storage.all(self.classes[args[0]]).items():
+            for k, v in storage.all(self.classes[args]).items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
