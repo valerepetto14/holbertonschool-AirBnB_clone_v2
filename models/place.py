@@ -55,7 +55,7 @@ class Place(BaseModel, Base):
                     # Se guarda el resultado en la lista a retornar
                     return_list.append(models.storage.all(Review)[review])
             return return_list
-            
+
         @property
         def amenities(self):
             """
@@ -70,7 +70,7 @@ class Place(BaseModel, Base):
                     # Se guarda el resultado en la lista a retornar
                     return_list.append(models.storage.all(Amenity)[amenity])
             return return_list
-        
+
         @amenities.setter
         def amenities(self, amenity_obj):
             if amenity_obj.__clas__.__name__ == "Amenity":
