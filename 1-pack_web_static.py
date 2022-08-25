@@ -10,11 +10,11 @@ from datetime import datetime
 
 def do_pack():
     """def do_pack"""
+    local("mkdir -p versions")
     fecha = datetime.now().strftime("%Y%M%d%H%M%S")
     name = "version/web_static_{}.tgz".format(fecha)
     try:
-        local("mkdir -p versions")
-        local("tar -cvzf {} web_static/".format(name_file))
-        return "web_static/{}".format(name_file)
+        local("tar -cvzf {} web_static/".format(name))
+        return "web_static/{}".format(name)
     except Exception:
         return None
