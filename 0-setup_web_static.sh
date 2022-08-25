@@ -15,7 +15,7 @@ echo "
     Holberton School
   </body>
 </html>
-" > sudo /data/web_static/releases/test/index.html
+" > /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 sudo sed -i "55i location /hbnb_static/ {\nalias /data/web_static/current/;\n}\n" /etc/nginx/sites-enabled/default
