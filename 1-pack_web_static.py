@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 def do_pack():
-    """def do_pack""""
+    """def do_pack"""
     fecha = datetime.now()
     name = "web_static_{}.tgz".format(fecha)
     try:
