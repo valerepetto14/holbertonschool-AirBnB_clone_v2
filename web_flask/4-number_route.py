@@ -30,12 +30,10 @@ def python(text="is cool"):
     return f'Python {text.replace("_"," ")}'
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     """def number"""
-    if n.isdigit() == True:
-        return f'{n} is a number'
-
+    return f'{n} is a number'
 
 if __name__ == '__main__':
     """app run"""

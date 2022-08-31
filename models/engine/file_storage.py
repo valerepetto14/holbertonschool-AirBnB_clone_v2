@@ -75,3 +75,7 @@ class FileStorage:
                 self.save()
             else:
                 pass
+
+    close(self):
+        """def method close"""
+        self.reload()
