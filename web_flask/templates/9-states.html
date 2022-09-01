@@ -4,11 +4,10 @@
         <TITLE>HBNB</TITLE>
     </HEAD>
     <BODY>
-        <h1>{{ states }}</h1>
-        <H1>State: {{ state }}</H1>
+        <H1>State: {{ st }}</H1>
         <H3>Cities:</H3>
         <UL>
-            {% for city in state.cities %}
+            {% for city in st.cities %}
                 <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
             {% endfor %}
         </UL>

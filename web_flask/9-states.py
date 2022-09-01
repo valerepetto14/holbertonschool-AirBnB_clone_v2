@@ -24,7 +24,10 @@ def states_list():
 def states_cities(id):
     """Import data from storage"""
     states = storage.all(State).values()
-    return render_template("9-states.html", states=states)
+    for state in states:
+        if state.id = id:
+            return render_template("9-states.html", st=state)
+    return
 
 if __name__ == '__main__':
     """app run"""
