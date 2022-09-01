@@ -103,3 +103,7 @@ class DBStorage:
         # Scoped session only one session per thread
         Session = scoped_session(new_session)
         self.__session = Session
+
+    def close(self):
+        """def method close"""
+        self.__session.remove()
