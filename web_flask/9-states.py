@@ -26,7 +26,7 @@ def states_cities(id=None):
     states = storage.all(State).values()
     for state in states:
         if state.id == id:
-        break
+            break
     return render_template("9-states.html", st=state)
 
 if __name__ == '__main__':
