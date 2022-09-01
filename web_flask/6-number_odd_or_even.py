@@ -1,4 +1,4 @@
-#!/usr/bin/python3}
+#!/usr/bin/python3
 """create app"""
 from flask import Flask, request, render_template
 
