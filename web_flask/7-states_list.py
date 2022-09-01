@@ -67,8 +67,7 @@ def states_list():
     """
     Import data from storage
     """
-    new_state = State()
-    states = storage.all(new_state).values()
+    states = storage.all(State).values()
     return render_template("7-states_list.html", states=states)
 
 
