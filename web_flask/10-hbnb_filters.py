@@ -3,6 +3,7 @@
 from flask import Flask, request, render_template
 from models import storage
 from models.state import State
+from models.amenity import Amenity
 app = Flask(__name__)
 
 @app.teardown_appcontext
@@ -17,7 +18,8 @@ def tear_down(self):
 def states_list():
     """Import data from storage"""
     states = storage.all(State).values()
-    return render_template("10-hbnb_filters.html", states=states)
+    amenetis = storage.all(Amenity).values()
+    return render_template("10-hbnb_filters.html", states=states, amenitis=amenitis)
 
 
 if __name__ == '__main__':
