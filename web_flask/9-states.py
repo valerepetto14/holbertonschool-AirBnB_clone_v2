@@ -21,13 +21,13 @@ def states_list():
 
 
 @app.route("/states/<id>", strict_slashes=False)
-def states_cities(id):
+def states_cities(id=None):
     """Import data from storage"""
     states = storage.all(State).values()
     for state in states:
         if state.id == id:
-            return render_template("9-states.html", st=state)
-    return
+        break
+    return render_template("9-states.html", st=state)
 
 if __name__ == '__main__':
     """app run"""
