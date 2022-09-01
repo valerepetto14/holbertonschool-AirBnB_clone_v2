@@ -20,21 +20,21 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
     """def hbnb"""
-    return f'C {text.replace("_"," ")}'
+    return '{}'.format(text.replace("_"," "))'
 
 
 @app.route('/python/<text>', strict_slashes=False)
 @app.route('/python/')
 def python(text="is cool"):
     """def hbnb"""
-    return f'Python {text.replace("_"," ")}'
+    return '{}'.format(text.replace("_"," "))'
 
 
 @app.route('/number/<n>', strict_slashes=False)
 def number(n):
     """def number"""
     if n.isdigit() == True:
-        return f'{n} is a number'
+        return '{} is a number'.format(n)
 
 
 @app.route('/number_template/<n>', strict_slashes=False)
