@@ -17,17 +17,8 @@ def tear_down(self):
 def states_list():
     """Import data from storage"""
     states = storage.all(State).values()
-    return render_template("9-states.html", states=states)
+    return render_template("10-hbnb_filters.html")
 
-
-@app.route("/states/<id>", strict_slashes=False)
-def states_cities(id):
-    """Import data from storage"""
-    states = storage.all(State).values()
-    for state in states:
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html", state=None)
 
 if __name__ == '__main__':
     """app run"""
