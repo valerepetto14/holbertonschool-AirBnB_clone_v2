@@ -13,7 +13,7 @@ def tear_down(self):
     storage.close()
 
 
-@app.route("/states", strict_slashes=False)
+@app.route("/hbnb_filters", strict_slashes=False)
 def states_list():
     """Import data from storage"""
     states = storage.all(State).values()
