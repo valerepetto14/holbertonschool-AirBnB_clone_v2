@@ -20,11 +20,9 @@ def states_list():
     """Import data from storage"""
     states = storage.all('State').values()
     amenities = storage.all('Amenity').values()
-    for i in amenities:
-        print(i)
-    return render_template("10-hbnb_filters.html", states=states)
+    return render_template("10-hbnb_filters.html", states=states, amenities=amenities)
 
-
+    
 if __name__ == '__main__':
     """app run"""
     app.run(host='0.0.0.0', port=5000)
