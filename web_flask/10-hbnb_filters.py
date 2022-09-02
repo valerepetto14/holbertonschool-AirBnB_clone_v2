@@ -18,11 +18,11 @@ def tear_down(self):
 @app.route("/hbnb_filters", strict_slashes=False)
 def states_list():
     """Import data from storage"""
-    states = storage.all('State').values()
-    amenities = storage.all('Amenity').values()
+    states = storage.all(State).values()
+    amenities = storage.all(Amenity).values()
     return render_template("10-hbnb_filters.html", states=states, amenities=amenities)
 
-    
+
 if __name__ == '__main__':
     """app run"""
     app.run(host='0.0.0.0', port=5000)
