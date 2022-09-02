@@ -19,8 +19,7 @@ def tear_down(self):
 def states_list():
     """Import data from storage"""
     states = storage.all(State).values()
-    places = storage.all(Place).values()
-    print(places)
+    print(states.keys())
     return render_template("10-hbnb_filters.html", states=states)
 
 
