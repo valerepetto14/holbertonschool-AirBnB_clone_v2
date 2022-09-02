@@ -4,6 +4,7 @@ from flask import Flask, request, render_template
 from models import storage
 from models.state import State
 from models.amenity import Amenity
+from models.place import Place
 app = Flask(__name__)
 
 @app.teardown_appcontext
@@ -18,11 +19,8 @@ def tear_down(self):
 def states_list():
     """Import data from storage"""
     states = storage.all(State).values()
-    for state in states:
-        for city in state.cities:
-            for place in city.places:
-                for amenitie in place.amenities:
-                    print(amenitie)
+    Place = storage.all(Place).values()
+    print(Place)
     return render_template("10-hbnb_filters.html", states=states)
 
 
