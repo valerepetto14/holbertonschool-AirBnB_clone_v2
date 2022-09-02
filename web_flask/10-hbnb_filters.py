@@ -21,7 +21,8 @@ def states_list():
     states = storage.all(State).values()
     for state in states:
         for city in state.cities:
-            print(city)
+            for place in city.Place:
+                print(place)
     return render_template("10-hbnb_filters.html", states=states)
 
 
