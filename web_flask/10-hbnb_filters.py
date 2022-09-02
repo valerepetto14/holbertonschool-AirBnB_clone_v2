@@ -22,7 +22,6 @@ def states_list():
     for state in states:
         for city in state.cities:
             print(city)
-            for place in city.places:
     return render_template("10-hbnb_filters.html", states=states)
 
 
