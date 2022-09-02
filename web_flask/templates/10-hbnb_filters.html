@@ -36,7 +36,9 @@
 					<h3>Amenities</h3>
 					<ul class="popover">
                         {% for ameneti in amenetis %}
-						    <li><h4>{{ ameneti.name }}</h4></li>
+                            <ul>
+                                <li><h4>{{ ameneti.name }}</h4></li>
+                            </ul>
                         {% endfor %}
 					</ul>
 				</div>
