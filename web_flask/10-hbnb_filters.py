@@ -18,8 +18,7 @@ def tear_down(self):
 def states_list():
     """Import data from storage"""
     states = storage.all(State).values()
-    amenetis = storage.all(Amenity).values()
-    return render_template("10-hbnb_filters.html", states=states, amenetis=amenetis)
+    return render_template("10-hbnb_filters.html", states=states, amenetis=states.amenities)
 
 
 if __name__ == '__main__':
