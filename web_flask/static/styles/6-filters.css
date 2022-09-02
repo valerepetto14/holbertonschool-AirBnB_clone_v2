@@ -31,6 +31,7 @@
 	list-style-type:None;
 	max-height: 300px;
 	display: none;
+	width: 100%;
 	background-color: #FAFAFA;
 	margin-left: -1px;
 	margin-top: 8px;
