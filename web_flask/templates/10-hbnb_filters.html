@@ -35,10 +35,12 @@
 				<div class="amenities">
 					<h3>Amenities</h3>
 					<ul class="popover">
-                        {% for ameneti in amenetis %}
-                            <ul>
-                                <li><h4>{{ ameneti.name }}</h4></li>
-                            </ul>
+                        {% for city in states.cities %}
+                            {% for ameniti in city.amenities %}
+                                <ul>
+                                    <li><h4>{{ ameneti }}</h4></li>
+                                </ul>
+                            {% endfor %}
                         {% endfor %}
 					</ul>
 				</div>
