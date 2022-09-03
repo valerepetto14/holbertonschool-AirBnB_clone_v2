@@ -79,15 +79,12 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """Borrar un objeto"""
-        if not obj:
-            return
-        else:
-            cp_objects = FileStorage.objects.copy()
-            for key, value in cp_objects.items():
-                if value == obj:
-                    del FileStorage.objects[key]
-                    self.save()
+        """
+        Delete from the current database session obj if not None
+        --> Use of delete method() with session
+        """
+        if obj is not None:
+            self.session.delete(obj)
 
     def reload(self):
         """
