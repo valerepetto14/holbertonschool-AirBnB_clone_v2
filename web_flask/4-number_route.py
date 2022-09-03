@@ -19,21 +19,22 @@ def hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
-    """def hbnb"""
-    return f'C {text.replace("_"," ")}'
+    """def c that return the variable text"""
+    return 'C {}'.format(text.replace("_", " "))
 
 
 @app.route('/python/<text>', strict_slashes=False)
-@app.route('/python/')
+@app.route('/python', strict_slashes=False)
 def python(text="is cool"):
-    """def hbnb"""
-    return f'Python {text.replace("_"," ")}'
+    """def python"""
+    return 'Python {}'.format(text.replace("_", " "))
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     """def number"""
-    return f'{n} is a number'
+    return '{} is a number'.format(n)
+
 
 if __name__ == '__main__':
     """app run"""
