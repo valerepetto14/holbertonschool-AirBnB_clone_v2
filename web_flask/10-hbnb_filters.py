@@ -7,6 +7,7 @@ from models.amenity import Amenity
 from models.place import Place
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def tear_down(self):
     """
@@ -21,7 +22,8 @@ def states_list():
     states = storage.all(State).values()
     amenities = storage.all(Amenity).values()
     print(amenities)
-    return render_template("10-hbnb_filters.html", states=states, amenities=amenities)
+    return render_template("10-hbnb_filters.html", states=states,
+                           amenities=amenities)
 
 
 if __name__ == '__main__':
