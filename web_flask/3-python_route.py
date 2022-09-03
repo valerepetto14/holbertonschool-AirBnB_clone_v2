@@ -20,7 +20,7 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
     """def c that return the variable text"""
-    return f'C {text.replace("_"," ")}'
+    return 'C {}'.format(text.replace("_", " "))
 
 
 @app.route('/python/<text>', strict_slashes=False)
