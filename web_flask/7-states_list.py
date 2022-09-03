@@ -16,7 +16,9 @@ def tear_down(self):
 
 @app.route("/states_list", strict_slashes=False)
 def states_list():
-    """ importando la data desde storage """
+    """
+    Import data from storage
+    """
     states = storage.all(State).values()
     return render_template("7-states_list.html", states=states)
 
