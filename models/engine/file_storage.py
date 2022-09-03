@@ -19,15 +19,16 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        if cls is not None:
-            dic = {}
-            for key, value in FileStorage.__objects.items():
-                cls_name = key.split(".")
-                if cls_name[0] == cls.__name__:
-                    dic[key] = value
-            return dic
-        else:
+        if cls is None:
             return FileStorage.__objects
+        else:
+            dict_of_classes = {}
+            for key, value in self.__objects.items():
+                # Si el nombre de la clase del objeto es igual a la clase
+                # lo agregamos en el dic a retornar
+                if value.__class__ == cls:
+                    dict_of_classes[key] = self.__objects[key]
+            return dict_of_classes
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -40,7 +41,7 @@ class FileStorage:
             temp.update(FileStorage.__objects)
             for key, val in temp.items():
                 temp[key] = val.to_dict()
-            json.dump(temp, f, indent=4)
+            json.dump(temp, f)
 
     def reload(self):
         """Loads storage dictionary from file"""
