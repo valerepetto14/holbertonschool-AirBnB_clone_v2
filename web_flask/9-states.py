@@ -5,6 +5,7 @@ from models import storage
 from models.state import State
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def tear_down(self):
     """
@@ -28,6 +29,7 @@ def states_cities(id):
         if state.id == id:
             return render_template("9-states.html", state=state)
     return render_template("9-states.html", state=None)
+
 
 if __name__ == '__main__':
     """app run"""
