@@ -79,10 +79,7 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """
-        Delete from the current database session obj if not None
-        --> Use of delete method() with session
-        """
+        """Borrar un objeto"""
         if not obj:
             return
         else:
@@ -91,7 +88,7 @@ class DBStorage:
                 if value == obj:
                     del FileStorage.objects[key]
                     self.save()
-                    
+
     def reload(self):
         """
         * Create all tables in the database (feature of SQLAlchemy)
