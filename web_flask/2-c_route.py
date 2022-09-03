@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """create app"""
 from flask import Flask, request
-
 app = Flask(__name__)
 
 
