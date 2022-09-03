@@ -1,6 +1,15 @@
 #!/usr/bin/python3
-"""This module defines a class to manage file storage for hbnb clone"""
+"""define FileStorage"""
 import json
+from models.base_model import BaseModel
+from os.path import exists
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+import models
 
 
 class FileStorage:
@@ -31,28 +40,10 @@ class FileStorage:
             temp.update(FileStorage.__objects)
             for key, val in temp.items():
                 temp[key] = val.to_dict()
-            json.dump(temp, f)
-
-    def delete(self, obj=None):
-        """Borrar un objeto"""
-        if not obj:
-            return
-        else:
-            cp_objects = FileStorage.__objects.copy()
-            for key, value in cp_objects.items():
-                if value == obj:
-                    del FileStorage.__objects[key]
-                    self.save()
+            json.dump(temp, f, indent=4)
 
     def reload(self):
         """Loads storage dictionary from file"""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.place import Place
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.review import Review
 
         classes = {
                     'BaseModel': BaseModel, 'User': User, 'Place': Place,
@@ -68,8 +59,22 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
+    def delete(self, obj=None):
+        """
+        Delete obj from __objects if it’s inside - if obj is equal to None,
+        the method should not do anything.
+        """
+        if obj is None:
+            pass
+        else:
+            # Creamos la key - es el: nombre de la clase + punto + id
+            key = f"{obj.__class__.__name__}.{obj.id}"
+            if self.__objects[key] is not None:
+                del self.__objects[key]
+                self.save()
+            else:
+                pass
+
     def close(self):
-        '''
-        deserializo el archivo json
-        '''
+        """def method close"""
         self.reload()
