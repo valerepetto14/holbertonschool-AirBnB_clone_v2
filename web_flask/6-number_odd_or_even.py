@@ -19,38 +19,36 @@ def hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
-    """def hbnb"""
-    return f'C {text.replace("_"," ")}'
+    """def c that return the variable text"""
+    return 'C {}'.format(text.replace("_", " "))
 
 
 @app.route('/python/<text>', strict_slashes=False)
-@app.route('/python/')
+@app.route('/python', strict_slashes=False)
 def python(text="is cool"):
-    """def hbnb"""
-    return f'Python {text.replace("_"," ")}'
+    """def python"""
+    return 'Python {}'.format(text.replace("_", " "))
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     """def number"""
-    if n.isdigit() == True:
-        return f'{n} is a number'
+    return '{} is a number'.format(n)
 
 
-@app.route('/number_template/<n>', strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
-    """def number"""
-    if n.isdigit() == True:
-        return render_template("5-number.html", number=n)
+    """def number_template that render a template"""
+    return render_template("5-number.html", number=n)
 
 
-@app.route('/number_odd_or_even/<n>', strict_slashes=False)
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
     """def number_odd_or_even"""
-    if n.isdigit() == True:
-        if int(n) % 2 == 0:
-            return render_template("6-number_odd_or_even.html",number=n, type="even")
-        return render_template("6-number_odd_or_even.html", number=n, type="odd")
+    if n % 2 == 0:
+        return render_template("6-number_odd_or_even.html", number=n,
+                               type="even")
+    return render_template("6-number_odd_or_even.html", number=n, type="odd")
 
 
 if __name__ == '__main__':
